@@ -80,6 +80,7 @@ DEPENDENCIES
   rspec
   rubocop
   rubocop-rspec
+  ruby-progressbar
   sinatra
   sinatra-activerecord
 

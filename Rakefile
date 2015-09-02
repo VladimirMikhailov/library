@@ -2,8 +2,6 @@ require_relative "config/environment"
 require "sinatra/activerecord/rake"
 require_relative "lib/library"
 
-task default: :spec
+Dir[File.expand_path("../lib/tasks/**/*.rake", __FILE__)].each { |f| load f }
 
-Rake::TestTask.new(:spec) do |t|
-  t.test_files = FileList["spec/*_spec.rb"]
-end
+task default: :spec

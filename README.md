@@ -7,3 +7,9 @@ Bootstrap Application
 --
 
 - Run `bin/setup`
+
+
+Generate Content
+--
+
+- Run `bin/rake generate_authors`

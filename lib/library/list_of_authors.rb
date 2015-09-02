@@ -9,7 +9,7 @@ module Library
     end
 
     def generate!
-      bulk_save.save { author }
+      bulk_save.save { authors }
     end
 
     private
