@@ -1,0 +1,9 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  min_messages: warning
+  timeout: 5000
+
+development:
+  database: library_dev
+  <<: *defaults

@@ -6,3 +6,8 @@ set -e
 gem install bundler --conservative
 
 bundle check --path .bundle > /dev/null 2>&1 || bundle install --path=.bundle
+
+# Set up database configuration file
+if [ ! -f config/database.yml ]; then
+  cp config/database.yml.example config/database.yml
+fi
