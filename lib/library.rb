@@ -1,5 +1,5 @@
 require_relative "library/bulk_save"
-require_relative "library/list_of_authors"
+require_relative "library/content_buffer"
 
 module Library
 end

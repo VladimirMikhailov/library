@@ -2,7 +2,7 @@ module Library
   describe BulkSave do
     let(:authors) { "Fyodor Dostoyevsky" }
 
-    subject(:export_authors) { described_class.new(table: :authors).save { authors } }
+    subject(:export_authors) { described_class.new(table: :authors).save(authors) }
 
     describe "#save" do
       context "with valid CSV format" do
@@ -30,7 +30,7 @@ module Library
       end
 
       context "when table doesn't exist" do
-        subject(:export_authors) { described_class.new(table: :wrong_table).save { authors } }
+        subject(:export_authors) { described_class.new(table: :wrong_table).save(authors) }
 
         it "raises undefined table error" do
           expect { export_authors }.to raise_error(PG::UndefinedTable)
@@ -39,7 +39,7 @@ module Library
 
       context "when column for table doesn't exist" do
         subject(:export_authors) do
-          described_class.new(table: :authors, columns: ["wrong"]).save { authors }
+          described_class.new(table: :authors, columns: ["wrong"]).save(authors)
         end
 
         it "raises undefined column error" do

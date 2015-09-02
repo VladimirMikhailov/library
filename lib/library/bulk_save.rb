@@ -9,8 +9,7 @@ module Library
       @query = QUERY % { table: table, columns: columns.join(",") }
     end
 
-    def save
-      data = block_given? && yield
+    def save(data)
       return unless data
 
       connection.copy_data(query) do
