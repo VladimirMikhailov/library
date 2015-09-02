@@ -7,6 +7,8 @@ gem "require_all"
 
 group :development do
   gem "rake"
+  gem "rubocop", require: false
+  gem "rubocop-rspec", require: false
 end
 
 group :development, :test do
