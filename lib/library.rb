@@ -1,5 +1,4 @@
-require "sinatra/activerecord"
+require_relative "library/exported_list"
 
-class Library < Sinatra::Base
-  register Sinatra::ActiveRecordExtension
+module Library
 end

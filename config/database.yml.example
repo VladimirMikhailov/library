@@ -7,3 +7,7 @@ defaults: &defaults
 development:
   database: library_dev
   <<: *defaults
+
+test:
+  database: library_test
+  <<: *defaults

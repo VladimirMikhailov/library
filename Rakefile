@@ -1,4 +1,4 @@
-%w(bundler find rake/testtask).each { |lib| require lib }
+require_relative "config/environment"
 require "sinatra/activerecord/rake"
 require_relative "lib/library"
 
