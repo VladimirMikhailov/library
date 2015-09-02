@@ -4,6 +4,7 @@ gem "sinatra"
 gem "sinatra-activerecord"
 gem "pg"
 gem "require_all"
+gem "ffaker"
 
 group :development do
   gem "rake"
