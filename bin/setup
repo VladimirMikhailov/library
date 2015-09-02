@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+set -e
+
+# Make sure we have Bundler installed
+gem install bundler --conservative
+
+bundle check --path .bundle > /dev/null 2>&1 || bundle install --path=.bundle
