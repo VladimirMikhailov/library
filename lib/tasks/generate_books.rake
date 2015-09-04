@@ -6,7 +6,7 @@ task :generate_books do
 
   40.times do
     buffer.save(times: 1_000_000) do
-      "#{FFaker::Name.name},#{rand(1940..2015)}"
+      "#{FFaker::Name.name},#{rand(Library::Books::PUBLISHMENTS)}"
     end
 
     progressbar.increment

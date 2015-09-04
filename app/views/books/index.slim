@@ -1,0 +1,8 @@
+h1 Loving Library
+
+ul
+  - if books.any?
+    - books.each do |book|
+      li= book.name
+  - else
+    li No books available

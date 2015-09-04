@@ -41,3 +41,7 @@ Style/AlignParameters:
   SupportedStyles:
     - with_first_parameter
     - with_fixed_indentation
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/features/**/*

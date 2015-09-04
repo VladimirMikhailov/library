@@ -1,7 +1,9 @@
 source "https://rubygems.org/"
 
 gem "sinatra"
+gem "sinatra-contrib"
 gem "sinatra-activerecord"
+gem "slim"
 gem "pg"
 gem "require_all"
 gem "ffaker"
@@ -14,6 +16,7 @@ group :development do
 end
 
 group :development, :test do
+  gem "capybara"
   gem "factory_girl"
   gem "rack-test"
   gem "rspec"
