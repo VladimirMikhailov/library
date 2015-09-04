@@ -13,3 +13,9 @@ Generate Content
 --
 
 - Run `bin/rake generate_authors`
+
+
+Start Dev Server
+--
+
+- Run `bin/server`

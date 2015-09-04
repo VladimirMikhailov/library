@@ -14,6 +14,8 @@ group :development do
 end
 
 group :development, :test do
+  gem "factory_girl"
+  gem "rack-test"
   gem "rspec"
   gem "database_rewinder"
 end
