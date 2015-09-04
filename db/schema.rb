@@ -25,6 +25,4 @@ ActiveRecord::Schema.define(version: 20150902165515) do
     t.integer "published_at", default: 1940, null: false
   end
 
-  add_index "books", ["published_at"], name: "index_books_on_published_at", using: :btree
-
 end

@@ -4,7 +4,5 @@ class CreateBooks < ActiveRecord::Migration
       t.string :name, default: "", null: false
       t.integer :published_at, null: false, default: 1940
     end
-
-    add_index :books, :published_at
   end
 end
