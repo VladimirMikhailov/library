@@ -53,6 +53,15 @@ module Library
         end
       end
 
+      context "when last_seen_id is the last element and direction is DESC" do
+        let(:last_seen_id) { last_book.id }
+        let(:direction) { "desc" }
+
+        it "returns two books from the end" do
+          expect(records.all).to eq_records([second_book, last_book])
+        end
+      end
+
       context "when last_seen_id is the last book and direction is DESC" do
         let(:last_seen_id) { second_book.id }
         let(:direction) { "DESC" }

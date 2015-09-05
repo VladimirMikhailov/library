@@ -10,21 +10,28 @@ module Library
       collection,
       per_page: PER_PAGE,
       last_seen_id: 0,
-      direction: DIRECTION
+      direction: "ASC"
     )
       @collection = collection
       @per_page = per_page || PER_PAGE
       @last_seen_id = last_seen_id || 0
-      @direction = DIRECTIONS.fetch(direction.upcase, DIRECTIONS["ASC"])
+      @direction = DIRECTIONS.key?(direction.upcase) ? direction.upcase : DIRECTIONS.keys.first
     end
 
     def all
-      collection.order("#{table_name}.id")
-        .where("#{table_name}.id #{direction} ?", last_seen_id)
-        .limit(per_page)
+      collection.klass.from(
+        collection.order("#{table_name}.id #{direction}")
+          .where("#{table_name}.id #{direction_condition} ?", last_seen_id)
+          .limit(per_page),
+        :books
+      ).order("#{table_name}.id")
     end
 
     private
+
+    def direction_condition
+      DIRECTIONS[direction]
+    end
 
     def table_name
       collection.klass.table_name
