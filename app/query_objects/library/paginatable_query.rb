@@ -23,7 +23,7 @@ module Library
         collection.order("#{table_name}.id #{direction}")
           .where("#{table_name}.id #{direction_condition} ?", last_seen_id)
           .limit(per_page),
-        :books
+        table_name
       ).order("#{table_name}.id")
     end
 
