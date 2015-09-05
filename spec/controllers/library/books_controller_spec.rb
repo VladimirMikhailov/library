@@ -1,6 +1,5 @@
 module Library
   describe BooksController do
-
     describe "GET /books" do
       it "responds with OK status" do
         get "/books"
