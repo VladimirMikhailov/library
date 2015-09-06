@@ -1,6 +1,6 @@
 module Library
   class PaginatableQuery
-    class BasePreloaded
+    class BasePaginated
       attr_reader :collection, :per_page, :last_seen_id
       private :collection, :per_page, :last_seen_id
 
@@ -14,18 +14,10 @@ module Library
         @last_seen_id = last_seen_id.to_i
       end
 
-      def next?
-        all.length > per_page + indent
-      end
-
-      def previous?
-        first_id.to_i < last_seen_id
-      end
-
       private
 
-      def indent
-        previous? ? 1 : 0
+      def table_name
+        collection.klass.table_name
       end
     end
   end

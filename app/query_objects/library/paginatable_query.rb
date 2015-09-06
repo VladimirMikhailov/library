@@ -1,10 +1,12 @@
 module Library
   class PaginatableQuery
     PER_PAGE = 30
-    DIRECTIONS = { "ASC" => ">", "DESC" => "<=" }
+    DIRECTIONS = %w(ASC DESC)
 
     attr_reader :collection, :direction, :per_page, :last_seen_id
     private :collection, :direction, :per_page, :last_seen_id
+
+    delegate :next?, :previous?, to: :paginated
 
     def initialize(
       collection,
@@ -15,26 +17,30 @@ module Library
       @collection = collection
       @per_page = per_page || PER_PAGE
       @last_seen_id = last_seen_id || 0
-      @direction = DIRECTIONS.key?(direction.upcase) ? direction.upcase : DIRECTIONS.keys.first
+      @direction = DIRECTIONS.include?(direction.upcase) ? direction.upcase : DIRECTIONS.first
     end
 
     def all
-      collection.klass.from(
-        collection.order("#{table_name}.id #{direction}")
-          .where("#{table_name}.id #{direction_condition} ?", last_seen_id)
-          .limit(per_page),
-        table_name
-      ).order("#{table_name}.id")
+      result = paginated.all.to_a
+
+      previous? && result.shift
+      next? && result.pop
+
+      result
     end
 
     private
 
-    def direction_condition
-      DIRECTIONS[direction]
+    def paginated
+      @paginated ||= direction_preloaded.new(
+        collection,
+        per_page: per_page,
+        last_seen_id: last_seen_id
+      )
     end
 
-    def table_name
-      collection.klass.table_name
+    def direction_preloaded
+      PaginatableQuery.const_get("#{direction}Paginated")
     end
   end
 end
