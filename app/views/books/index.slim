@@ -6,3 +6,9 @@ ul
       li= book.name
   - else
     li No books available
+
+- if books.previous?
+  a href="/books?last_seen_id=#{books.paginated_first_id}&direction=desc" Previous
+
+- if books.next?
+  a href="/books?last_seen_id=#{books.last_id}" Next

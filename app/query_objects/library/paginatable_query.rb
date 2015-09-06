@@ -1,5 +1,7 @@
 module Library
   class PaginatableQuery
+    include Enumerable
+
     PER_PAGE = 30
     DIRECTIONS = %w(ASC DESC)
 
@@ -7,6 +9,10 @@ module Library
     private :collection, :direction, :per_page, :last_seen_id
 
     delegate :next?, :previous?, to: :paginated
+    delegate :each, :last, to: :all
+    delegate :id, to: :last, prefix: true
+    delegate :first, to: :paginated, prefix: true
+    delegate :id, to: :paginated_first, prefix: true
 
     def initialize(
       collection,

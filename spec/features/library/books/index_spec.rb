@@ -1,4 +1,4 @@
-describe "Visit to the books list page", feature: true do
+describe "Visit the books index page", feature: true do
   before do
     Capybara.app = Library::BooksController
   end

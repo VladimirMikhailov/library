@@ -45,3 +45,7 @@ Style/AlignParameters:
 RSpec/DescribeClass:
   Exclude:
     - spec/features/**/*
+
+Style/PredicateName:
+  Exclude:
+    - spec/support/features/**/*
