@@ -16,7 +16,7 @@ describe "Pagination on the books page", feature: true do
   specify "visit second page" do
     visit "/books"
 
-    click_on("Next")
+    find(:next_page_link).click
 
     expect(page).to have_content("My book 2")
   end
@@ -25,7 +25,7 @@ describe "Pagination on the books page", feature: true do
     visit "/books?last_seen_id=2"
     expect(page).to have_last_page_controls
 
-    click_on("Previous")
+    find(:previous_page_link).click
 
     expect(page).to have_content("My book 0")
   end

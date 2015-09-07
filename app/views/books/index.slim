@@ -1,14 +1,44 @@
-h1 Loving Library
+- if books.any?
+  - books.each do |book|
+    ul.collection
+      li.collection-item
+        div
+          = book.name
+          a href="/books"
+            i.right.material-icons delete
+- else
+      li.collection-item
+        div No books available
 
-ul
-  - if books.any?
-    - books.each do |book|
-      li= book.name
-  - else
-    li No books available
+.row
+  ul.pagination
+    - if books.previous?
+      li.left
+        a href="/books?last_seen_id=#{books.paginated_first_id}&direction=desc"
+          i.material-icons chevron_left
+    - else
+      li.left.disabled
+        a href="#"
+          i.material-icons chevron_left
 
-- if books.previous?
-  a href="/books?last_seen_id=#{books.paginated_first_id}&direction=desc" Previous
+    - if books.next?
+      li.right
+        a href="/books?last_seen_id=#{books.last_id}"
+          i.material-icons chevron_right
+    - else
+      li.right.disabled
+        a href="#"
+          i.material-icons chevron_right
 
-- if books.next?
-  a href="/books?last_seen_id=#{books.last_id}" Next
+.fixed-action-btn
+  a.waves-effect.wave-light.btn-large.btn-floating.modal-trigger.red href="#new_book"
+    i.material-icons add
+
+#new_book.modal
+  .modal-content
+    h4 Add New Book
+    p Any form
+
+  .modal-footer
+    a.modal-action.modal-close.waves-effect.waves-green.btn-flat
+      | Add

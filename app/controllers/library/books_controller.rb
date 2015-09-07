@@ -2,12 +2,10 @@ module Library
   class BooksController < ApplicationController
     register Sinatra::MultiRoute
 
-    PER_PAGE = 30
-
-    set :views, proc { File.join(root, "../../views/books") }
+    PER_PAGE = 20
 
     get "/", "/books" do
-      slim(:index, books: books)
+      slim(:"books/index", books: books)
     end
 
     private

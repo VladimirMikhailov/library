@@ -4,5 +4,25 @@ html
   head
     title Library App
 
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+    link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+
   body
-    == yield
+    header
+      nav
+        .container
+          .nav-wrapper
+            a.brand-logo.right href="#"
+              i.material-icons library_books
+
+            ul#nav-mobile.hide-on-med-and-dow
+              li
+                a href="/" Books
+
+    .container
+      == yield
+
+  script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+  script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"
