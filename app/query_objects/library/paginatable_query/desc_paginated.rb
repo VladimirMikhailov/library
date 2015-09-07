@@ -5,7 +5,7 @@ module Library
       delegate :id, to: :last, prefix: true, allow_nil: true
 
       def all
-        klass.with(
+        @all ||= klass.with(
           paginated: paginated,
           next_records: next_records
         ).from(union).order("id")

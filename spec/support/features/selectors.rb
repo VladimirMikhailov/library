@@ -1,5 +1,5 @@
 Capybara.add_selector(:delete_book_icon) do
-  css { |name| ".section h6:contains('#{name}') a" }
+  css { |name| %{.collection-item div:contains("#{name}") form button} }
 end
 
 Capybara.add_selector(:next_page_link) do

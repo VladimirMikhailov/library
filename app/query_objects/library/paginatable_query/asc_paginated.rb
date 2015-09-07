@@ -2,7 +2,7 @@ module Library
   class PaginatableQuery
     class ASCPaginated < BasePaginated
       def all
-        klass.with(
+        @all ||= klass.with(
           previous: previous,
           paginated: paginated
         ).from(union)

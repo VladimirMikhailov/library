@@ -4,8 +4,14 @@
       li.collection-item
         div
           = book.name
-          a href="/books"
-            i.right.material-icons delete
+
+          form.right action="#{books_path(book)}" method="POST"
+            input(type="hidden" name="_method" value="delete")
+            input(type="hidden" name="last_seen_id" value="#{last_seen_id}")
+            input(type="hidden" name="direction" value="#{direction}")
+
+            button.btn-flat(type="submit" name="action")
+              i.material-icons delete
 - else
       li.collection-item
         div No books available
@@ -14,7 +20,7 @@
   ul.pagination
     - if books.previous?
       li.left
-        a href="/books?last_seen_id=#{books.paginated_first_id}&direction=desc"
+        a href="#{books_path(last_seen_id: books.paginated_first_id, direction: 'desc')}"
           i.material-icons chevron_left
     - else
       li.left.disabled
@@ -23,7 +29,7 @@
 
     - if books.next?
       li.right
-        a href="/books?last_seen_id=#{books.last_id}"
+        a href="#{books_path(last_seen_id: books.last_id)}"
           i.material-icons chevron_right
     - else
       li.right.disabled
