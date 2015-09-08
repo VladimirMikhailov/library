@@ -11,3 +11,5 @@ bundle check --path .bundle > /dev/null 2>&1 || bundle install --path=.bundle
 if [ ! -f config/database.yml ]; then
   cp config/database.yml.example config/database.yml
 fi
+
+bundle exec rake db:create db:migrate

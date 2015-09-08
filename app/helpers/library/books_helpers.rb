@@ -5,6 +5,14 @@ module Library
     end
     module_function :books_path
 
+    def published_at_min
+      Book::PUBLISHMENTS.min
+    end
+
+    def published_at_max
+      Book::PUBLISHMENTS.max
+    end
+
     class Path
       ROOT = "/books"
 

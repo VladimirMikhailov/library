@@ -5,7 +5,7 @@ describe "Book creating", feature: true do
     Capybara.app = Library::BooksController
   end
 
-  specify "create book" do
+  specify "creating book from index path" do
     visit "/books"
 
     expect(page).not_to have_content(book_name)
@@ -16,8 +16,15 @@ describe "Book creating", feature: true do
     expect(page).to have_content(book_name)
   end
 
-  def submit_form
-    fill_in :name, with: book_name
+  specify "create book with invalid data" do
+    visit "/books/new"
+    submit_form(name: "")
+
+    expect(page).to have_label_text(:name, "can't be blank")
+  end
+
+  def submit_form(name: book_name)
+    fill_in :name, with: name
     click_on "Add"
   end
 end

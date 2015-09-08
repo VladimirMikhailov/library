@@ -18,7 +18,7 @@ module Library
     end
 
     get "/books/new" do
-      slim(:"books/new", locals: { book: Book.new })
+      slim(:"books/new", locals: { book: BookFormPresenter.new(Book.new) })
     end
 
     post "/books" do
@@ -27,7 +27,7 @@ module Library
       if book.save
         redirect books_path
       else
-        slim(:"books/new", locals: { book: book })
+        slim(:"books/new", locals: { book: BookFormPresenter.new(book) })
       end
     end
 

@@ -6,20 +6,24 @@
   form.col.s12 action="#{books_path}" method="POST"
     .row
       .input-field.col.s12
-        input.validate#name(
+        input#name(
+          class="validate #{book.valid_class(:name)}"
           name="book[name]"
           placeholder="Name"
           type="text"
           value="#{book.name}"
         )
-        label(for="name") Name
+        label(for="name")= book.name_label
 
     .row
-      .input-field.col.s12
+      .range-field.col.s12
+        label(for="published_at")= book.published_at_label
         input.datepicker#published_at(
+          class="validate #{book.valid_class(:published_at)}"
           name="book[published_at]"
-          placeholder="Published at"
-          type="date"
+          type="range"
+          min="#{published_at_min}"
+          max="#{published_at_max}"
           value="#{book.published_at}"
         )
 

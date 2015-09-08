@@ -21,3 +21,7 @@ end
 Capybara.add_selector(:create_new_book) do
   css { ".fixed-action-btn a:contains('add')" }
 end
+
+Capybara.add_selector(:input_label) do
+  xpath { |name| %{.//*[contains(@class, "input-field") and .//input[@id="#{name}"]]//label} }
+end
