@@ -9,10 +9,26 @@ module Library
     get "/", "/books" do
       slim(
         :"books/index",
-        last_seen_id: last_seen_id,
-        direction: direction,
-        books: books
+        locals: {
+          last_seen_id: last_seen_id,
+          direction: direction,
+          books: books
+        }
       )
+    end
+
+    get "/books/new" do
+      slim(:"books/new", locals: { book: Book.new })
+    end
+
+    post "/books" do
+      book = Book.new(book_params)
+
+      if book.save
+        redirect books_path
+      else
+        slim(:"books/new", locals: { book: book })
+      end
     end
 
     delete "/books/:id" do |id|
@@ -24,8 +40,12 @@ module Library
 
     private
 
+    def book_params
+      (params["book"] || {}).slice("name", "published_at")
+    end
+
     def books
-      PaginatableQuery.new(
+      @books ||= PaginatableQuery.new(
         Book.all,
         per_page: PER_PAGE,
         last_seen_id: last_seen_id,

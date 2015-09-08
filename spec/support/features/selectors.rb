@@ -17,3 +17,7 @@ end
 Capybara.add_selector(:previous_page_link_disabled) do
   css { ".pagination li.disabled a:contains('chevron_left')" }
 end
+
+Capybara.add_selector(:create_new_book) do
+  css { ".fixed-action-btn a:contains('add')" }
+end

@@ -1,10 +1,9 @@
 module Library
   module BooksHelpers
-    extend self
-
     def books_path(book = nil, **params)
       Path.new(book, params).to_s
     end
+    module_function :books_path
 
     class Path
       ROOT = "/books"

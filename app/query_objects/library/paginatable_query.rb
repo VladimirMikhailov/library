@@ -27,7 +27,7 @@ module Library
     end
 
     def all
-      result = paginated.all.to_a
+      result = paginated.all.to_a.dup
 
       previous? && result.shift
       next? && result.pop
