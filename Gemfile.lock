@@ -32,6 +32,7 @@ GEM
       activesupport (>= 3.0.0)
     ffaker (2.1.0)
     i18n (0.7.0)
+    interactor (3.1.0)
     json (1.8.3)
     mime-types (2.6.1)
     mini_portile (0.6.2)
@@ -110,6 +111,7 @@ DEPENDENCIES
   database_rewinder
   factory_girl
   ffaker
+  interactor
   pg
   postgres_ext
   rack-test

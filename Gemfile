@@ -8,6 +8,7 @@ gem "pg"
 gem "require_all"
 gem "ffaker"
 gem "postgres_ext"
+gem "interactor"
 
 group :development do
   gem "rake"
