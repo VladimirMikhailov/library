@@ -24,7 +24,7 @@ module Library
       context "when book's name starts with downcase letter" do
         let(:book) { build(:book, name: "adblock") }
 
-        it "decrements the number of books publishments" do
+        it "decrements the number of books first letters" do
           expect { update }.to change { books_first_letter.reload.count }.to(1)
         end
       end
