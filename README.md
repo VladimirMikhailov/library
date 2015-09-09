@@ -7,12 +7,13 @@ Bootstrap Application
 --
 
 - Run `bin/setup`
+- Make sure you have right db connection values at `config/database.yml`
 
 
 Generate Content
 --
 
-- Run `bin/rake generate_authors`
+- Run `bin/seed`
 
 
 Start Dev Server

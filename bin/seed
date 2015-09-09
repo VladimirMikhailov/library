@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require "benchmark"
+
+tasks = {
+  "Generate books" => "bin/rake generate_books",
+  "Generate authors" => "bin/rake generate_authors",
+  "Generate books authors" => "bin/rake generate_books_authors",
+  "Gather authors publishments counts" => "bin/rake refresh_authors_publishments_counts",
+  "Generate book graph caches" =>
+    "bin/rake refresh_books_first_letters refresh_books_publishment_years"
+}
+
+Benchmark.bm(35) do |bench|
+  tasks.each_with_index do |(task, command), index|
+    bench.report("#{index + 1}/#{tasks.length} #{task}") { `#{command}` }
+  end
+end

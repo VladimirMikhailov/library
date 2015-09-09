@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909065019) do
+ActiveRecord::Schema.define(version: 20150909144121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
-    t.string "name", default: "", null: false
+    t.string  "name",               default: "", null: false
+    t.integer "publishments_count", default: 0,  null: false
   end
+
+  add_index "authors", ["publishments_count"], name: "index_authors_on_publishments_count", using: :btree
 
   create_table "books", force: :cascade do |t|
     t.string  "name",         default: "",   null: false
@@ -29,6 +32,8 @@ ActiveRecord::Schema.define(version: 20150909065019) do
     t.integer "author_id"
     t.integer "book_id"
   end
+
+  add_index "books_authors", ["author_id"], name: "index_books_authors_on_author_id", using: :btree
 
   create_table "books_first_letters", id: false, force: :cascade do |t|
     t.string  "id",                null: false
