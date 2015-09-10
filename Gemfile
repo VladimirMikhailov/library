@@ -12,6 +12,7 @@ gem "interactor"
 gem "que"
 gem "redis"
 gem "redis-activesupport"
+gem "active_model_serializers", "0.8.3"
 
 group :development do
   gem "rake"
