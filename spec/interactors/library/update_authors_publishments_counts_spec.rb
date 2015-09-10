@@ -1,7 +1,7 @@
 module Library
   describe UpdateAuthorsPublishmentsCounts do
     describe "#call" do
-      let!(:author) { create(:author, book: book) }
+      let!(:author) { create(:author, books: [book]) }
 
       it_behaves_like "incrementable and decrementable" do
         let(:book) { build(:book, id: 1) }
@@ -11,7 +11,7 @@ module Library
       context "when action is decrement" do
         let(:action) { "decrement" }
         let(:book) { build(:book, id: 1) }
-        let!(:author) { create(:author, book: book, publishments_count: 1) }
+        let!(:author) { create(:author, books: [book], publishments_count: 1) }
 
         subject(:update) { described_class.call(book: book, action: action) }
 
