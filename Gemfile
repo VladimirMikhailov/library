@@ -10,6 +10,8 @@ gem "ffaker"
 gem "postgres_ext"
 gem "interactor"
 gem "que"
+gem "redis"
+gem "redis-activesupport"
 
 group :development do
   gem "rake"

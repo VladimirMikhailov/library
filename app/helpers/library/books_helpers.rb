@@ -1,9 +1,8 @@
 module Library
   module BooksHelpers
-    def books_path(book = nil, **params)
+    module_function def books_path(book = nil, **params)
       Path.new(book, params).to_s
     end
-    module_function :books_path
 
     def published_at_min
       Book::PUBLISHMENTS.min
