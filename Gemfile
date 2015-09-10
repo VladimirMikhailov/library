@@ -9,6 +9,7 @@ gem "require_all"
 gem "ffaker"
 gem "postgres_ext"
 gem "interactor"
+gem "que"
 
 group :development do
   gem "rake"

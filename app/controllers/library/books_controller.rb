@@ -25,6 +25,7 @@ module Library
       book = Book.new(book_params)
 
       if book.save
+        UpdateGraphsStatsJob.enqueue(book.id, "increment")
         redirect books_path
       else
         slim(:"books/new", locals: { book: BookFormPresenter.new(book) })
@@ -33,7 +34,11 @@ module Library
 
     delete "/books/:id" do |id|
       book = Book.find(id)
-      book.destroy
+
+      Book.transaction do
+        UpdateGraphsStatsJob.enqueue(book.id, "decrement")
+        book.destroy
+      end
 
       redirect(books_path(last_seen_id: last_seen_id, direction: direction))
     end

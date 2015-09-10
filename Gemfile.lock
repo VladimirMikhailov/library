@@ -49,6 +49,7 @@ GEM
       arel (>= 4.0.1)
       pg_array_parser (~> 0.0.9)
     powerpack (0.1.1)
+    que (0.11.2)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -114,6 +115,7 @@ DEPENDENCIES
   interactor
   pg
   postgres_ext
+  que
   rack-test
   rake
   require_all
@@ -125,3 +127,6 @@ DEPENDENCIES
   sinatra-activerecord
   sinatra-contrib
   slim
+
+BUNDLED WITH
+   1.10.5
