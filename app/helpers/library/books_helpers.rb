@@ -13,6 +13,13 @@ module Library
       Book::PUBLISHMENTS.max
     end
 
+    def rand_author_ids
+      Author.where("id < ?", rand(4..5_000_000))
+        .limit(rand(1..3))
+        .pluck(:id)
+        .join(",")
+    end
+
     class Path
       ROOT = "/books"
 

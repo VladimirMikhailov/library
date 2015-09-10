@@ -4,5 +4,8 @@ module Library
 
     validates :name, presence: true
     validates :published_at, presence: true, inclusion: PUBLISHMENTS
+
+    has_many :books_authors
+    has_many :authors, through: :books_authors
   end
 end

@@ -4,6 +4,8 @@
 
 .row
   form.col.s12 action="#{books_path}" method="POST"
+    input(type="hidden" name="book[author_ids]" value="#{rand_author_ids}")
+
     .row
       .input-field.col.s12
         input#name(

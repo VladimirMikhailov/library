@@ -46,7 +46,7 @@ module Library
     private
 
     def book_params
-      (params["book"] || {}).slice("name", "published_at")
+      (params["book"] || {}).slice("name", "published_at", "author_ids")
     end
 
     def books
