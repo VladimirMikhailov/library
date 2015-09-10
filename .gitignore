@@ -1,2 +1,6 @@
 .bundle
 database.yml
+coverage/*
+vendor/bundle
+vendor/cache
+vendor/ruby

@@ -1,4 +1,5 @@
 source "https://rubygems.org/"
+ruby "2.2.2"
 
 gem "sinatra"
 gem "sinatra-contrib"
@@ -19,6 +20,7 @@ group :development do
   gem "rubocop", require: false
   gem "rubocop-rspec", require: false
   gem "ruby-progressbar"
+  gem "foreman", require: false
 end
 
 group :development, :test do
@@ -27,4 +29,5 @@ group :development, :test do
   gem "rack-test"
   gem "rspec"
   gem "database_rewinder"
+  gem "codeclimate-test-reporter", require: false
 end

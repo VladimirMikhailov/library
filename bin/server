@@ -1,3 +1,5 @@
 #!/usr/bin/env sh
 
-rackup -p 3000
+set -e
+
+bin/foreman start
