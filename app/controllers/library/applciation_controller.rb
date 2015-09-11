@@ -1,6 +1,9 @@
 module Library
   class ApplicationController < Sinatra::Base
-    set :views, proc { File.join(root, "../../views") }
+    register Sinatra::AssetPack
+
+    set :root, File.expand_path("../../", __dir__)
+    set :views, proc { File.join(root, "views") }
     set :method_override, true
   end
 end

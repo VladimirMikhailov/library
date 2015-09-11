@@ -1,41 +1,42 @@
-- if books.any?
-  - books.each do |book|
-    ul.collection
-      li.collection-item
-        div
-          = book.name
+.container
+  - if books.any?
+    - books.each do |book|
+      ul.collection
+        li.collection-item
+          div
+            = book.name
 
-          form.right action="#{books_path(book)}" method="POST"
-            input(type="hidden" name="_method" value="delete")
-            input(type="hidden" name="last_seen_id" value="#{last_seen_id}")
-            input(type="hidden" name="direction" value="#{direction}")
+            form.right action="#{books_path(book)}" method="POST"
+              input(type="hidden" name="_method" value="delete")
+              input(type="hidden" name="last_seen_id" value="#{last_seen_id}")
+              input(type="hidden" name="direction" value="#{direction}")
 
-            button.btn-flat(type="submit" name="action")
-              i.material-icons delete
-- else
-      li.collection-item
-        div No books available
+              button.btn-flat(type="submit" name="action")
+                i.material-icons delete
+  - else
+        li.collection-item
+          div No books available
 
-.row
-  ul.pagination
-    - if books.previous?
-      li.left
-        a href="#{books_path(last_seen_id: books.paginated_first_id, direction: 'desc')}"
-          i.material-icons chevron_left
-    - else
-      li.left.disabled
-        a href="#"
-          i.material-icons chevron_left
+  .row
+    ul.pagination
+      - if books.previous?
+        li.left
+          a href="#{books_path(last_seen_id: books.paginated_first_id, direction: 'desc')}"
+            i.material-icons chevron_left
+      - else
+        li.left.disabled
+          a href="#"
+            i.material-icons chevron_left
 
-    - if books.next?
-      li.right
-        a href="#{books_path(last_seen_id: books.last_id)}"
-          i.material-icons chevron_right
-    - else
-      li.right.disabled
-        a href="#"
-          i.material-icons chevron_right
+      - if books.next?
+        li.right
+          a href="#{books_path(last_seen_id: books.last_id)}"
+            i.material-icons chevron_right
+      - else
+        li.right.disabled
+          a href="#"
+            i.material-icons chevron_right
 
-.fixed-action-btn
-  a.waves-effect.wave-light.btn-large.btn-floating.red href="/books/new"
-    i.material-icons add
+  .fixed-action-btn
+    a.waves-effect.wave-light.btn-large.btn-floating.red href="/books/new"
+      i.material-icons add

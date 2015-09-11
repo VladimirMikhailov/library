@@ -2,10 +2,21 @@ module Library
   class GraphsController < ApplicationController
     register Sinatra::RespondWith
 
+    assets do
+      serve "/js", from: "assets/javascripts"
+      js :application, %w(/js/*.js)
+      js_compression :jsmin
+    end
+
     get "/graphs" do
       respond_to do |format|
         format.json { json(graphs_serializer) }
-        format.html { slim(:"graphs/index") }
+        format.html do
+          slim(
+            :"graphs/index",
+            locals: { graphs: graphs_serializer }
+          )
+        end
       end
     end
 
