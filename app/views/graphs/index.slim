@@ -1,12 +1,12 @@
 .row
-  #publishments-by-years.section.scrollspy
-    canvas#by-years-chart(style="width: 100; height: 500px")
+  #publishments-by-years.section
+    canvas.by-years-chart(style="width: 100%; height: 500px")
 
-  #top-authors-publishments.section.scrollspy
-    canvas#top-authors-chart(style="width: 100; height: 500px")
+  #top-authors-publishments.section
+    canvas.top-authors-chart(style="width: 100%; height: 500px")
 
-  #publishments-by-first-letters.section.scrollspy
-    canvas#by-first-letters-chart(style="width: 100; height: 500px")
+  #publishments-by-first-letters.section
+    canvas.by-first-letters-chart(style="width: 100%; height: 500px")
 
 javascript:
-  window.Library.graphs = #{{graphs.to_json}};
+  window.Library.data = #{{graphs.to_json}};

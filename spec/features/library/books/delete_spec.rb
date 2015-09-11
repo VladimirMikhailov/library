@@ -21,7 +21,6 @@ describe "Book deleting", feature: true do
     expect(page).not_to have_content(visible_after_delete.name)
 
     find(:delete_book_icon, deleted.name).click
-
     expect(page).to have_content(visible_after_delete.name)
   end
 end

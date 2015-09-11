@@ -7,5 +7,7 @@ module Library
 
     has_many :books_authors
     has_many :authors, through: :books_authors
+
+    scope :active, -> { where(deleted_at: nil) }
   end
 end

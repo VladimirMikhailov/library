@@ -9,7 +9,7 @@ module Library
     end
 
     module_function def update!
-      store.write(KEY) { top_authors_publishments }
+      store.write(KEY, top_authors_publishments)
     end
 
     private

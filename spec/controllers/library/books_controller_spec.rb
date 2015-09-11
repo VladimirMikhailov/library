@@ -6,6 +6,14 @@ module Library
 
         expect(last_response).to be_ok
       end
+
+      context "when request is XHR" do
+        it "responds only with collection block" do
+          get("/books", {}, "HTTP_X_REQUESTED_WITH" => "XMLHttpRequest")
+
+          expect(last_response.body).to eq("<ul class=\"collection\"></ul>")
+        end
+      end
     end
 
     describe "POST /books" do

@@ -4,3 +4,4 @@ coverage/*
 vendor/bundle
 vendor/cache
 vendor/ruby
+public/assets/*

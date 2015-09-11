@@ -14,7 +14,7 @@ gem "interactor"
 gem "que"
 gem "redis"
 gem "redis-activesupport"
-gem "active_model_serializers", "0.8.3"
+gem "active_model_serializers"
 
 group :development do
   gem "rake"
@@ -31,4 +31,5 @@ group :development, :test do
   gem "rspec"
   gem "database_rewinder"
   gem "codeclimate-test-reporter", require: false
+  gem "jasmine"
 end

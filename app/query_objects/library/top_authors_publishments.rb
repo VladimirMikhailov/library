@@ -51,7 +51,7 @@ module Library
 
     def authors
       Author.order("publishments_count DESC")
-        .joins(:books_authors)
+        .where("publishments_count > 0")
         .limit(TOP)
         .pluck(:id, :name)
         .map { |author| AuthorPublishments.new(*author) }

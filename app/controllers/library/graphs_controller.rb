@@ -1,12 +1,8 @@
 module Library
   class GraphsController < ApplicationController
-    register Sinatra::RespondWith
+    include Assetpackable
 
-    assets do
-      serve "/js", from: "assets/javascripts"
-      js :application, %w(/js/*.js)
-      js_compression :jsmin
-    end
+    register Sinatra::RespondWith
 
     get "/graphs" do
       respond_to do |format|
@@ -31,7 +27,7 @@ module Library
     end
 
     def publishments_by_years
-      BooksFirstLetter.order("id").pluck(:count)
+      BooksPublishmentYear.order("id").pluck(:count)
     end
 
     def top_authors_publishments

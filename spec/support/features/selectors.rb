@@ -1,5 +1,5 @@
 Capybara.add_selector(:delete_book_icon) do
-  css { |name| %{.collection-item div:contains("#{name}") form button} }
+  css { |name| %{.collection-item:contains("#{name}") form button} }
 end
 
 Capybara.add_selector(:next_page_link) do

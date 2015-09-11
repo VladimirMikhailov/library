@@ -1,14 +1,16 @@
 module Library
   class BooksController < ApplicationController
+    include Assetpackable
     include BooksHelpers
 
     register Sinatra::MultiRoute
 
-    PER_PAGE = 20
+    PER_PAGE = 30
 
     get "/", "/books" do
       slim(
-        :"books/index",
+        index_template,
+        layout: !request.xhr?,
         locals: {
           last_seen_id: last_seen_id,
           direction: direction,
@@ -36,8 +38,8 @@ module Library
       book = Book.find(id)
 
       Book.transaction do
-        UpdateGraphsStatsJob.enqueue(book.id, "decrement")
-        book.destroy
+        DeleteBookJob.enqueue(book.id)
+        book.update_attributes!(deleted_at: Time.now.utc)
       end
 
       redirect(books_path(last_seen_id: last_seen_id, direction: direction))
@@ -45,13 +47,17 @@ module Library
 
     private
 
+    def index_template
+      request.xhr? ? :"books/collection" : :"books/index"
+    end
+
     def book_params
       (params["book"] || {}).slice("name", "published_at", "author_ids")
     end
 
     def books
       @books ||= PaginatableQuery.new(
-        Book.all,
+        Book.active,
         per_page: PER_PAGE,
         last_seen_id: last_seen_id,
         direction: direction
