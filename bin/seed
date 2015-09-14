@@ -13,6 +13,6 @@ tasks = {
 
 Benchmark.bm(35) do |bench|
   tasks.each_with_index do |(task, command), index|
-    bench.report("#{index + 1}/#{tasks.length} #{task}") { `#{command}` }
+    bench.report("#{index + 1}/#{tasks.length} #{task}") { system(command) }
   end
 end

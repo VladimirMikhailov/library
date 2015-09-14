@@ -11,7 +11,7 @@ and their publishments
 Requirements
 --
 
-- Ruby 2.2.2
+- Ruby 2.2.3
 - Redis
 - PostgreSQL >= 9.2
 

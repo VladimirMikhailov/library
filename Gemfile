@@ -1,5 +1,5 @@
 source "https://rubygems.org/"
-ruby "2.2.2"
+ruby "2.2.3"
 
 gem "sinatra"
 gem "sinatra-contrib"
@@ -15,6 +15,7 @@ gem "que"
 gem "redis"
 gem "redis-activesupport"
 gem "active_model_serializers"
+gem "puma"
 
 group :development do
   gem "rake"
