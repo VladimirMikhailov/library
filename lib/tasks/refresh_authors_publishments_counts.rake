@@ -6,6 +6,8 @@ task :refresh_authors_publishments_counts do
     add_primary_key_and_indexes
     replace_tables
   end
+
+  Library::TopAuthorsPublishmentsGraph.update!
 end
 
 def replace_tables
