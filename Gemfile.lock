@@ -64,6 +64,7 @@ GEM
       arel (>= 4.0.1)
       pg_array_parser (~> 0.0.9)
     powerpack (0.1.1)
+    puma (2.13.4)
     que (0.11.2)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -151,6 +152,7 @@ DEPENDENCIES
   jasmine
   pg
   postgres_ext
+  puma
   que
   rack-test
   rake
