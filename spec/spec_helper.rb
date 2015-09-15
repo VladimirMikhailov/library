@@ -1,3 +1,8 @@
+if ENV["CODECLIMATE_REPO_TOKEN"]
+  require "codeclimate-test-reporter"
+  CodeClimate::TestReporter.start
+end
+
 ENV["SINATRA_ENV"] = "test"
 
 require_relative "../config/environment"
