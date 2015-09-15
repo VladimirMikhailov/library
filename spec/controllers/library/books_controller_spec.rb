@@ -11,7 +11,7 @@ module Library
         it "responds only with collection block" do
           get("/books", {}, "HTTP_X_REQUESTED_WITH" => "XMLHttpRequest")
 
-          expect(last_response.body).to eq("<ul class=\"collection\"></ul>")
+          expect(last_response.body).to eq("<ul class=\"collection\" data-path=\"/books\"></ul>")
         end
       end
     end

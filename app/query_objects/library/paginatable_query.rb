@@ -10,7 +10,7 @@ module Library
 
     delegate :next?, :previous?, to: :paginated
     delegate :each, :last, to: :all
-    delegate :id, to: :last, prefix: true
+    delegate :id, to: :last, prefix: true, allow_nil: true
     delegate :first, to: :paginated, prefix: true
     delegate :id, to: :paginated_first, prefix: true
 
