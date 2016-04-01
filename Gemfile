@@ -1,5 +1,5 @@
 source "https://rubygems.org/"
-ruby "2.2.3"
+ruby "2.3.0"
 
 gem "sinatra"
 gem "sinatra-contrib"
@@ -26,7 +26,9 @@ group :development do
 end
 
 group :development, :test do
+  gem "byebug"
   gem "capybara"
+  gem "poltergeist"
   gem "factory_girl"
   gem "rack-test"
   gem "rspec"

@@ -13,11 +13,11 @@ describe "Visit the books index page", feature: true do
   specify "the books list page when no books available" do
     visit "/books"
 
-    expect(page).to have_content("No books available")
+    expect(page).to have_content("No book available")
   end
 
   specify "the books list content paginated by 2" do
-    stub_const("Library::BooksController::PER_PAGE", 2)
+    stub_const("Library::PaginatableQuery::PER_PAGE", 2)
     3.times { |i| create(:book, name: "My #{i} book") }
 
     visit "/books"
