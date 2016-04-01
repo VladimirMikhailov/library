@@ -3,50 +3,33 @@ module Library
     include Enumerable
 
     PER_PAGE = 30
-    DIRECTIONS = %w(ASC DESC)
 
-    attr_reader :collection, :direction, :per_page, :last_seen_id
-    private :collection, :direction, :per_page, :last_seen_id
+    attr_reader :collection, :params
+    private :collection, :params
 
-    delegate :next?, :previous?, to: :paginated
-    delegate :each, :last, to: :all
-    delegate :id, to: :last, prefix: true, allow_nil: true
-    delegate :first, to: :paginated, prefix: true
-    delegate :id, to: :paginated_first, prefix: true
+    delegate :table_name, to: :collection
+    private :table_name
 
-    def initialize(
-      collection,
-      per_page: PER_PAGE,
-      last_seen_id: 0,
-      direction: "ASC"
-    )
+    def initialize(collection, params)
       @collection = collection
-      @per_page = per_page || PER_PAGE
-      @last_seen_id = last_seen_id || 0
-      @direction = DIRECTIONS.include?(direction.upcase) ? direction.upcase : DIRECTIONS.first
+      @params = params
     end
 
     def all
-      result = paginated.all.to_a.dup
-
-      previous? && result.shift
-      next? && result.pop
-
-      result
+      paginated
+        .order("id")
+        .limit(PER_PAGE)
     end
 
     private
 
     def paginated
-      @paginated ||= direction_preloaded.new(
-        collection,
-        per_page: per_page,
-        last_seen_id: last_seen_id
-      )
+      return collection unless last_seen_id
+      collection.where("#{table_name}.id > ?", last_seen_id)
     end
 
-    def direction_preloaded
-      PaginatableQuery.const_get("#{direction}Paginated")
+    def last_seen_id
+      params["last_seen_id"]
     end
   end
 end
