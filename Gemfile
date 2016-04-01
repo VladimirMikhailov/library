@@ -26,7 +26,9 @@ group :development do
 end
 
 group :development, :test do
+  gem "byebug"
   gem "capybara"
+  gem "poltergeist"
   gem "factory_girl"
   gem "rack-test"
   gem "rspec"

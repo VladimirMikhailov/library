@@ -5,17 +5,13 @@ module Library
 
     register Sinatra::MultiRoute
 
-    PER_PAGE = 30
-
     get "/", "/books" do
+      books ||= PaginatableQuery.new(Book.active, params)
+
       slim(
         index_template,
         layout: !request.xhr?,
-        locals: {
-          last_seen_id: last_seen_id,
-          direction: direction,
-          books: books
-        }
+        locals: { books: books }
       )
     end
 
@@ -42,7 +38,7 @@ module Library
         book.update_attributes!(deleted_at: Time.now.utc)
       end
 
-      redirect(books_path(last_seen_id: last_seen_id, direction: direction))
+      redirect(books_path)
     end
 
     private
@@ -53,23 +49,6 @@ module Library
 
     def book_params
       (params["book"] || {}).slice("name", "published_at", "author_ids")
-    end
-
-    def books
-      @books ||= PaginatableQuery.new(
-        Book.active,
-        per_page: PER_PAGE,
-        last_seen_id: last_seen_id,
-        direction: direction
-      )
-    end
-
-    def last_seen_id
-      params[:last_seen_id]
-    end
-
-    def direction
-      params[:direction].to_s
     end
   end
 end

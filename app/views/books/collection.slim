@@ -8,8 +8,6 @@ ul.collection(data-path="#{books_path(last_seen_id: books.last_id)}")
       .secondary-content
         form.right action="#{books_path(book)}" method="POST"
           input(type="hidden" name="_method" value="delete")
-          input(type="hidden" name="last_seen_id" value="#{last_seen_id}")
-          input(type="hidden" name="direction" value="#{direction}")
 
           button.btn-flat(type="submit" name="action")
             i.material-icons delete

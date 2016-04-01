@@ -7,6 +7,8 @@ module Library
     attr_reader :collection, :params
     private :collection, :params
 
+    delegate :each, to: :all
+
     delegate :table_name, to: :collection
     private :table_name
 
@@ -16,9 +18,11 @@ module Library
     end
 
     def all
-      paginated
-        .order("id")
-        .limit(PER_PAGE)
+      @all ||= paginated.order("id").limit(PER_PAGE)
+    end
+
+    def last_id
+      all.last && all.last.id
     end
 
     private
