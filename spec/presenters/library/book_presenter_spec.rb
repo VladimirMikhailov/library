@@ -1,5 +1,5 @@
 module Library
-  describe BookFormPresenter do
+  describe BookPresenter do
     let(:book) { build_stubbed(:book) }
 
     before { book.valid? }

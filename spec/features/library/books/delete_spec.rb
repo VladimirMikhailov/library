@@ -1,9 +1,4 @@
 describe "Book deleting", feature: true do
-  before do
-    Capybara.app = Library::BooksController
-    stub_const("Library::BooksController::PER_PAGE", 2)
-  end
-
   let!(:book) { create(:book) }
 
   specify "delete by clicking on control button" do
