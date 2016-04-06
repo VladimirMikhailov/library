@@ -1,8 +1,4 @@
 describe "Visit the books index page", feature: true do
-  before do
-    Capybara.app = Library::BooksController
-  end
-
   specify "the books list content" do
     create(:book, name: "My book")
     visit "/books"

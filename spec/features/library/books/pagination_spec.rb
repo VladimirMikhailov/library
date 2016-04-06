@@ -1,6 +1,5 @@
 describe "Pagination on the books page", feature: true do
   before do
-    Capybara.app = Library::BooksController
     stub_const("Library::PaginatableQuery::PER_PAGE", 2)
     3.times { |i| create(:book, id: i + 1, name: "My book #{i}") }
 
