@@ -1,5 +1,5 @@
 module Library
-  class BookFormPresenter
+  class BookPresenter
     attr_reader :book
     private :book
 
